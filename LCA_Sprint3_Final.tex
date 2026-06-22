@@ -1,0 +1,346 @@
+\documentclass[12pt, a4paper]{report}
+
+% Packages
+\usepackage[a4paper, top=1.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+\setlength{\headheight}{14pt}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{tocloft}
+\usepackage{hyperref}
+\usepackage{parskip}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{setspace}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, backgrounds, fit}
+\usepackage{tabularx}
+\usepackage{makecell}
+\usepackage{caption}
+\usepackage{lscape}
+\usepackage{graphicx}
+\usepackage{rotating}
+\usepackage{float}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{R}{>{\raggedleft\arraybackslash}X}
+\newcommand{\chem}[1]{\ensuremath{\mathrm{#1}}}
+\usepackage{eso-pic}
+\AddToShipoutPictureBG{%
+  \begin{tikzpicture}[remember picture, overlay]
+    \draw[line width=1.5pt]
+      ([xshift= 20pt, yshift= 20pt]current page.south west)
+      rectangle
+      ([xshift=-20pt, yshift=-20pt]current page.north east);
+  \end{tikzpicture}%
+}
+\hypersetup{
+  colorlinks = true,
+  linkcolor  = black,
+  urlcolor   = black,
+  citecolor  = black
+}
+\pagestyle{fancy}
+\fancyfoot[C]{\thepage}
+\renewcommand{\footrulewidth}{0.4pt}
+\usepackage{needspace}
+\titleformat{\chapter}[block]
+  {\normalfont\large\bfseries}{\thechapter.}{0.8em}{}
+\titlespacing{\chapter}{0pt}{20pt}{10pt}
+\makeatletter
+\patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{\needspace{4cm}}{}{}
+\patchcmd{\chapter}{\clearpage}{\needspace{4cm}}{}{}
+\makeatother
+\titleformat{\section}[block]
+  {\normalfont\normalsize\bfseries}{\thesection}{0.8em}{}
+\titlespacing{\section}{0pt}{14pt}{6pt}
+\titleformat{\subsection}[block]
+  {\normalfont\normalsize\itshape}{\thesubsection}{0.8em}{}
+\titlespacing{\subsection}{0pt}{10pt}{4pt}
+\renewcommand{\cftchapfont}{\bfseries}
+\renewcommand{\cftchappagefont}{\bfseries}
+\setlength{\cftbeforechapskip}{6pt}
+\setstretch{1.3}
+
+\begin{document}
+
+\tableofcontents
+\thispagestyle{fancy}
+\listoftables
+\thispagestyle{fancy}
+\listoffigures
+\thispagestyle{fancy}
+\newpage
+
+\chapter{Introduction}
+Carbon capture plays a crucial role in reducing the concentration of carbon dioxide released into the atmosphere by various industries. One significant contributor to carbon dioxide emissions is the hydrogen production industry, particularly through the Steam Methane Reforming (SMR) process. SMR is a conventional method widely used not only for hydrogen production but also in applications such as ammonia synthesis, oil refining, methanol production, chemical manufacturing, fuel cell systems, and other emerging low-carbon energy technologies \cite{Spath}.
+
+\begin{center}
+Steam Methane Reforming reaction: CH\textsubscript{4} + H\textsubscript{2}O $\rightarrow$ CO + 3H\textsubscript{2}
+\end{center}
+
+The products of the reaction are further processed to produce carbon dioxide and hydrogen.
+
+\begin{center}
+Water-Gas Shift (WGS) reaction: CO + H\textsubscript{2}O $\rightarrow$ CO\textsubscript{2} + H\textsubscript{2}
+\end{center}
+
+The carbon dioxide produced during the SMR process is captured before being released into the atmosphere \cite{Soltani}.
+
+\chapter{Goal and Scope}
+The purpose of this study is to analyze the life cycle assessment (LCA) of the carbon capture system integrated with the SMR process \cite{National Energy Technology Laboratory}.
+
+\begin{itemize}
+  \item Quantify the material and energy inputs required to capture 1 kg of CO\textsubscript{2} \cite{Dufour,Rubin}.
+  \item Identify key areas of environmental impact within the carbon capture system.
+  \item Evaluate potential improvements in CO\textsubscript{2} separation processes, electricity usage, and CO\textsubscript{2} compression.
+  \item Facilitate better decision-making to effectively reduce emissions from traditional SMR hydrogen production.
+\end{itemize}
+
+\chapter{Functional Unit}
+The functional unit is defined as \textbf{1\,kg of concentrated CO\textsubscript{2} obtained through the Steam Methane Reforming (SMR) method} \cite{Dufour,Rubin}.
+
+\chapter{System Boundary}
+The boundary is based on the \textbf{Gate-to-Gate} method \cite{ISO14040}. The primary focus is on CO\textsubscript{2} absorption and separation, consumption of steel of the carbon capture unit, and the energy input required for capturing the carbon \cite{Rubin}.
+
+\chapter{Process Description}
+\section{Steam Methane Reforming (SMR)}
+Steam methane reforming is the dominant industrial route for hydrogen production \cite{RostrupNielsen1993,RostrupNielsen2011}.
+
+\section{Water-Gas Shift (WGS)}
+The reformer effluent enters the water-gas shift reactor, where additional hydrogen is generated \cite{Haussinger2011,Newsome1980}.
+
+\section{Downstream Processing and CO\textsubscript{2} Compression}
+The off-gas from the PSA unit is cooled and routed to the gas-liquid separator \cite{RostrupNielsen2011,Sircar2000}. The separated CO\textsubscript{2} stream is compressed in a three-stage compressor \cite{IPCC2005,Wang2011}.
+
+\begin{table}[h]
+\centering
+\caption{Input and Product(output) Property Table}
+\label{tab:master_property_full}
+\setlength{\tabcolsep}{6pt}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{|l|R|R|R|R|l|}
+\hline
+\multicolumn{6}{|l|}{\textbf{Input and Product(output) Property Table}} \\
+\hline
+\textbf{Object} & \textbf{Steam} & \textbf{Methane} & \makecell{\textbf{Compressed}\\\textbf{H$_2$}\\\textbf{(Product)}} & \makecell{\textbf{Compressed}\\\textbf{CO$_2$}\\\textbf{(Product)}} & \textbf{Unit} \\
+\hline
+\textbf{Temperature}       & 150      & 25       & 40       & 65.9942   & $^\circ$C   \\
+\hline
+\textbf{Pressure}          & 1        & 1        & 200      & 110       & bar         \\
+\hline
+\textbf{Mass Flow}         & 30       & 10       & 2.10908  & 10.2199   & kg/h        \\
+\hline
+\textbf{Molar Flow}        & 1.66525  & 0.623346 & 0.998548 & 0.240206  & kmol/h      \\
+\hline
+\textbf{Volumetric Flow}   & 58.2278  & 15.42    & 0.140233 & 0.0369433 & m$^3$/h     \\
+\hline
+\textbf{Density (Mixture)} & 0.515218 & 0.648508 & 15.0398  & 276.639   & kg/m$^3$    \\
+\hline
+\end{tabularx}
+\end{table}
+
+\begin{table}[h]
+\centering
+\caption{Chemical Reactions in the system}
+\label{tab:smr_reactions}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Reaction} & \textbf{Equation} \\
+\hline
+Methane Reforming & $\mathrm{CH_4 + H_2O \rightleftharpoons CO + 3H_2}$ \\
+Water Gas Shift   & $\mathrm{CO + H_2O \rightleftharpoons CO_2 + H_2}$ \\
+\hline
+\end{tabular}
+\end{table}
+
+\chapter{Process Simulation and Modelling}
+The SMR-CCS process was simulated in DWSIM using the Peng-Robinson thermodynamic package.
+
+\chapter{Industrial Analogue}
+This flowsheet mirrors Air Liquide's CRYOCAP\textsuperscript{TM}~H\textsubscript{2} technology \cite{AirLiquide2015,Antonini2020}.
+
+\clearpage
+\newpage
+
+\begin{sidewaysfigure}[htbp]
+    \centering
+    \includegraphics[width=\textheight, keepaspectratio]{Process flow.png}
+    \caption{Process Flow Diagram of SMR with WGS Reactor, CO$_2$ compression}
+    \label{fig:process_flow}
+\end{sidewaysfigure}
+
+\clearpage
+\newpage
+
+\begin{table}[htbp]
+\centering
+\caption{Stream Compositions (Mole Fractions)}
+\label{tab:stream_compositions}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.35}
+\begin{tabularx}{\textwidth}{L C C C C C}
+\toprule
+\textbf{Stream} & \textbf{Methane} & \makecell{\textbf{Carbon}\\\textbf{Monoxide}} & \makecell{\textbf{Carbon}\\\textbf{Dioxide}} & \textbf{Hydrogen} & \textbf{Water} \\
+\midrule
+Cool\_H2-2 & 0.006863 & 0 & 0 & 0.9931 & 0 \\
+Comp\_H2-2 & 0.006863 & 0 & 0 & 0.9931 & 0 \\
+Compressed H$_2$ (Product) & 0.006863 & 0 & 0 & 0.9931 & 0 \\
+\midrule
+CO$_2$ Rich & 0.04194 & 0.006094 & 0.9474 & 0.004587 & 0 \\
+Compressed CO$_2$ (Product) & 0.04194 & 0.006094 & 0.9474 & 0.004587 & 0 \\
+\midrule
+Off-Gas & 0.4589 & 0.02858 & 0.3535 & 0.1506 & 0.008439 \\
+Liq-out & $1.201\times10^{-8}$ & $2.926\times10^{-8}$ & 0.002812 & $4.107\times10^{-7}$ & 0.9972 \\
+\midrule
+Methane & 1 & 0 & 0 & 0 & 0 \\
+Steam   & 0 & 0 & 0 & 0 & 1 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\clearpage
+
+\chapter{Model Graph of OpenLCA}
+In OpenLCA, a process represents a specific activity or operation within a system.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Open LCA Process Flow.jpeg}
+    \caption{OpenLCA process flow diagram for CO$_2$ compression stages.}
+    \label{fig:openLCA_flowchart}
+\end{figure}
+
+\chapter{Impact Category Result}
+
+\begin{table}[H]
+\centering
+\caption{Inventory data per kg CO$_2$ captured}
+\label{tab:inventory}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{lcccccccc}
+\toprule
+\textbf{Component} & \textbf{Steel (kg)} & \textbf{Steel/kg CO$_2$} & \textbf{Electricity (kW)} & \textbf{Electricity/kg CO$_2$} & \textbf{Heat (kW)} & \textbf{Heat/kg CO$_2$} & \textbf{Flow (kg/h)} & \textbf{Flow/kg CO$_2$} \\
+\midrule
+Cooler 6     & 105  & $6.55\times10^{-5}$ & --- & ---                 & 0.20 & $7.04\times10^{-2}$ & --- & --- \\
+Cooler 7     & 110  & $6.87\times10^{-5}$ & --- & ---                 & 0.58 & $2.04\times10^{-1}$ & --- & --- \\
+Cooler 8     & 240  & $1.50\times10^{-4}$ & --- & ---                 & 0.35 & $1.23\times10^{-1}$ & --- & --- \\
+Compressor 4 & 50.7 & $3.16\times10^{-5}$ & 0.19 & $6.73\times10^{-2}$ & --- & --- & --- & --- \\
+Compressor 5 & 50.5 & $3.15\times10^{-5}$ & 0.16 & $5.67\times10^{-2}$ & --- & --- & --- & --- \\
+Compressor 6 & 41.7 & $2.60\times10^{-5}$ & 0.04 & $1.53\times10^{-2}$ & --- & --- & --- & --- \\
+Methane      & ---  & ---                 & --- & ---                 & --- & --- & 10  & $9.79\times10^{-1}$ \\
+Steam        & ---  & ---                 & --- & ---                 & --- & --- & 30  & $2.94$ \\
+\bottomrule
+\end{tabular}%
+}
+\end{table}
+
+\chapter{Impact Assessment Result}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Methane.jpeg}
+    \caption{Methane required per kg of CO$_2$ captured.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Steam.jpeg}
+    \caption{Steam required per kg of CO$_2$ captured.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Steel requirement.jpeg}
+    \caption{Steel required per process per kg of CO$_2$ captured.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{e10.png}
+    \caption{Energy required for compressor 4 per kg of CO$_2$ captured.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{E12.jpeg}
+    \caption{Energy required for compressor 5 per kg of CO$_2$ captured.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{E14.jpeg}
+    \caption{Energy required for compressor 6 per kg of CO$_2$ captured.}
+\end{figure}
+
+\chapter{Conclusion}
+The DWSIM simulation demonstrates that the carbon capture and compression train requires a total energy input of \textbf{1.132~kW}. The capture efficiency is \textbf{88.0\%}. The OpenLCA model shows that producing 1~kg of captured CO\textsubscript{2} requires approximately 0.979~kg of methane and 2.937~kg of steam. The final compression stage (Compressor~6) is the dominant energy consumer at 1.532~MJ/kg CO\textsubscript{2}.
+
+\begin{thebibliography}{99}
+
+\bibitem{Spath}
+Spath, P.~L. and Mann, M.~K. (2001). \textit{Life Cycle Assessment of Hydrogen Production via Natural Gas Steam Reforming.} NREL.
+
+\bibitem{Soltani}
+Soltani, R., Rosen, M.~A., and Dincer, I. (2014). \textit{Assessment of CO$_2$ capture options from various points in steam methane reforming.} Int. J. Hydrogen Energy.
+
+\bibitem{National Energy Technology Laboratory}
+NETL. (2022). \textit{Steam Methane Reforming with CCS: Life Cycle Inventory Data.} U.S. DOE.
+
+\bibitem{Dufour}
+Dufour, J. et al. Life cycle assessment of hydrogen production by steam reforming. \textit{Int. J. Hydrogen Energy}, 34(3), 1370--1376, 2009.
+
+\bibitem{Rubin}
+Rubin, E.~S. et al. The cost of CO\textsubscript{2} capture and storage. \textit{Int. J. Greenhouse Gas Control}, 40, 378--400, 2015.
+
+\bibitem{IEA}
+IEA. \textit{Net Zero by 2050.} Paris, 2021.
+
+\bibitem{ISO14040}
+ISO 14040:2006. \textit{Environmental Management -- Life Cycle Assessment.} ISO, Geneva, 2006.
+
+\bibitem{Rostrup-Nielsen}
+Rostrup-Nielsen, J.~R. et al. \textit{Advances in Catalysis}, 47, 65--139, 2002.
+
+\bibitem{RostrupNielsen1993}
+J.~R. Rostrup-Nielsen. \textit{Catalysis Today}, 18(4), 305--324, 1993.
+
+\bibitem{RostrupNielsen2011}
+J.~R. Rostrup-Nielsen and L.~J. Christiansen. \textit{Concepts in Syngas Manufacture}. Imperial College Press, 2011.
+
+\bibitem{Haussinger2011}
+P.~H\"{a}ussinger et al. Hydrogen production. In \textit{Ullmann's Encyclopedia}. Wiley-VCH, 2011.
+
+\bibitem{IEAGHG2017}
+IEAGHG. SMR-based hydrogen plant with CCS, Report 2017/02, 2017.
+
+\bibitem{Newsome1980}
+D.~S. Newsome. \textit{Catalysis Reviews}, 21(2), 275--318, 1980.
+
+\bibitem{Ratnasamy2009}
+C.~Ratnasamy and J.~P. Wagner. \textit{Catalysis Reviews}, 51(3), 325--440, 2009.
+
+\bibitem{Sircar2000}
+S.~Sircar and T.~C. Golden. \textit{Separation Science and Technology}, 35(5), 667--687, 2000.
+
+\bibitem{Kohl1997}
+A.~L. Kohl and R.~B. Nielsen. \textit{Gas Purification}, 5th ed. Gulf Publishing, 1997.
+
+\bibitem{IPCC2005}
+IPCC. \textit{Special Report on Carbon Dioxide Capture and Storage}. Cambridge University Press, 2005.
+
+\bibitem{Wang2011}
+M.~Wang et al. \textit{Chemical Engineering Research and Design}, 89(9), 1609--1624, 2011.
+
+\bibitem{AirLiquide2015}
+Air Liquide. CRYOCAP\textsuperscript{TM} hydrogen unit press release, 2015. \url{https://www.airliquide.com/}
+
+\bibitem{Antonini2020}
+C.~Antonini et al. \textit{Sustainable Energy \& Fuels}, 4(6), 2967--2986, 2020.
+
+\bibitem{Linde2021}
+Linde Engineering. HISORP\textsuperscript{\textregistered}~CC brochure, 2021. \url{https://www.linde-engineering.com/}
+
+\end{thebibliography}
+
+\end{document}
