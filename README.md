@@ -55,18 +55,6 @@ ToolPurposeDWSIMProcess simulation (Peng-Robinson EOS)OpenLCALife cycle inventor
 
 The flowsheet mirrors Air Liquide's CRYOCAP™ H₂ technology (Port-Jérôme, France), which has been in commercial operation since 2015 at 100,000 t/yr CO₂ and >97% capture rate (TRL 9).
 
-
-**Repository Structure**
-
-├── report/
-│   └── LCA_Sprint_3_Final.pdf       # Full course report
-├── simulation/
-│   └── SMR_CCS.dwsim                # DWSIM process flowsheet
-├── lca/
-│   └── openLCA_model/               # OpenLCA project files
-└── README.md
-
-
 **References**
 
 Key references underpinning this work:
